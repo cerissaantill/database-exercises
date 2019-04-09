@@ -1,11 +1,18 @@
-USE codeup_test_db;
 
 SELECT "Using codeup_test_db" AS "Database";
+
+USE codeup_test_db;
+
+
+SELECT "Truncating albums table" AS "Truncate Statement";
 
 TRUNCATE ALBUMS;
 
 
-INSERT INTO albums (ARTIST, NAME, RELEASE_DATE, SALES, GENRE)
+SELECT "Inserting records into albums table" AS "Insert Statement";
+
+INSERT INTO albums (ARTIST, NAME, RELEASE_YEAR, SALES, GENRE)
+
 
 VALUES("Michael Jackson", "Thriller", 1982, 47.3, "Pop, Rock, R&B"),
       ("Eagles", "Their Greatest Hits (1971-1975)", 1976, 41.2, "Country Rock, Soft Rock, Folk Rock"),
