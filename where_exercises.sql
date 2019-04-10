@@ -58,4 +58,4 @@ WHERE last_name LIKE '%q%'
 
 
 
-# you can highlight what you want to run and command + return will run only what's highlighted
+-- you can highlight what you want to run and command + return will run only what's highlighted
