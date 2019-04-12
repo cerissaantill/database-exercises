@@ -2,12 +2,12 @@ USE EMPLOYEES;
 
 
 -- 1. Find all employees with the same hire date as employee 101010 using a sub-query (69 rows)
-SELECT first_name, last_name, hire_date
+SELECT *
 FROM employees
 WHERE hire_date IN (
 SELECT hire_date
 FROM employees
-WHERE emp_no = 101010
+WHERE emp_no = '101010'
 );
 
 
@@ -33,7 +33,7 @@ WHERE emp_no IN
         WHERE gender = 'F'
         )
   AND to_date > now()
-  )
+  );
 
 
 
@@ -43,11 +43,24 @@ WHERE emp_no IN
 -- BONUS
 -- 1. Find all the dept names that currently have female managers
 
-
-
+SELECT *
+FROM departments
+WHERE dept_no IN (
+  SELECT dept_no
+  FROM dept_manager
+  JOIN employees e ON dept_manager.emp_no = e.emp_no
+  WHERE to_date > now()
+  AND e.gender = 'F'
+  );
 
 
 -- 2. Find the first and last name of the employees with the highest salary
+
+SELECT first_name, last_name
+FROM employees
+WHERE emp_no = (
+  SELECT emp_no FROM salaries
+  WHERE salary = (SELECT max(salary) FROM salaries));
 
 
 
