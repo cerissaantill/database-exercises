@@ -1,5 +1,5 @@
 CREATE DATABASE adlister;
-
+USE adlister;
 
 CREATE TABLE users(
                     user_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -12,26 +12,30 @@ CREATE TABLE users(
                     PRIMARY KEY(user_id)
 );
 
+CREATE TABLE categories(
+                         cat_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+                         categories VARCHAR(155),
+                         PRIMARY KEY(cat_id)
+);
+
 
 CREATE TABLE ads(
                   ad_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+                  user_id INT UNSIGNED NOT NULL,
+                  cat_id INT UNSIGNED NOT NULL,
                   description TEXT NOT NULL,
-                  created_on
-                    cat_id,
-                  user_id,
-
-
+                  created_on DATE,
+                  FOREIGN KEY(user_id) REFERENCES users(user_id),
+                  FOREIGN KEY(cat_id) REFERENCES categories(cat_id),
+                  PRIMARY KEY(ad_id)
 );
 
-
-CREATE TABLE categories(
-                         cat_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-                         categories VARCHAR(155)
-);
 
 
 CREATE TABLE user_ad(
-                      user_id,
-                      ad_id,
-                      cat_id
+                      user_id INT UNSIGNED NOT NULL,
+                      ad_id INT UNSIGNED NOT NULL,
+                      cat_id INT UNSIGNED NOT NULL,
+                      FOREIGN KEY (user_id) REFERENCES users(user_id),
+                      FOREIGN KEY (ad_id) REFERENCES ads(ad_id)
 );
